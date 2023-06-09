@@ -11,17 +11,25 @@ ENV: python3
 Technologies: Flask, SQLAlchemy(ORM), Rest_API
 
 ## Setting up the Environment
- -> Install python requirements 
+ - Install python requirements 
+ ```
  pip install -r requirements.txt
- -> modify the file "web_dynamic_api.sh" and update the mysql Server Username, Password & Database Name
- -> Setting the "HBNB_ENV=dev" will only creates the table structures once
- -> setting the "HBNB_ENV=test" will Truncate all tables and recreate them each time Flask restarts or reloads after a code change.
+ ```
+ - modify the file "web_dynamic_api.sh" and update the mysql Server Username, Password & Database Name
+ - Setting the "HBNB_ENV=dev" will only creates the table structures once
+ - setting the "HBNB_ENV=test" will Truncate all tables and recreate them each time Flask restarts or reloads after a code change.
  
 ## Running the Program and Bootstrapping the Database and running the API
+```
 sudo mysql -u root
+```
 > create database kitambulisho_db;
+
 >quit;
-$ bash -x web_dynamic_api.sh
+
+```
+bash -x web_dynamic_api.sh
+```
 
 Api Endpoints are documented in the "api.txt" file provided.
  
