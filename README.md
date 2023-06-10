@@ -23,7 +23,7 @@ Technologies: Flask, SQLAlchemy(ORM), Rest_API
 ```
 sudo mysql -u root
 ```
-> create database kitambulisho_db;
+> CREATE DATABASE kitambulisho_db;
 
 >quit;
 
