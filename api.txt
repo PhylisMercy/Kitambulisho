@@ -4,9 +4,31 @@ curl -X POST http://0.0.0.0:5001/api/v1/amenities/ -H "Content-Type: application
 curl -X PUT http://0.0.0.0:5001/api/v1/amenities/7a7554c2-2c5a-45e8-9c05-6662cfc7049a -H "Content-Type: application/json" -d '{"name": "Libiancas", "ID_Number": "9865552"}' - update kitambulisho Details
 curl localhost:5001/api/v1/places/2ec62c4b-f8ea-4a52-b68d-9b06eb7fb927/signoffs  - list all Reissued ids by station
 
+# Look up a station where kitambulisho is stored based on kitambulisho pk id
+curl localhost:5001/api/v1/amenities/<amenity_id>/places
+# With the above filter to only show the vitambulisho that are yet to be collected
+
+# verify if a particular ID/kitambulisho has been collected and at which station was this done.
+curl localhost:5001/api/v1/amenities/<amenity_id>/signoffs
+
+# Query for Amenities that have been recovered but have not been turned in at a Station
+
+# Results of above should allow perform reverse lookup at the individual who found it then retrieve their contact
+# info and an sms will be sent to them that contains a reference number that was generated and will be used when
+# returning the document to a registered collection station/huduma center.
+
+# Creates a table that will map amenities/vitambulisho to the users who recovered the lost document
+# This can be used to provide rewards as well as allow for push notifications reminding them to hand in the document to huduma centers.
+
+
+
+
 
 TODO: reverse check signoff to a station.
+
 TODO: reverse check kitambulisho to a station/stations based on signed off/ pending sign off
+
+
 
 
 

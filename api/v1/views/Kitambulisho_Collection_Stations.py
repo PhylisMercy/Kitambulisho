@@ -37,7 +37,7 @@ def get_places(city_id):
     temp = list()
     if STORAGE_TYPE == "db":
         city = storage.get("City", city_id)
-        print(city)
+        # print(city)
         if not city:
             abort(404)
         places = [place.to_dict() for place in city.Kitambulisho_Collection_Stations]

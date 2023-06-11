@@ -78,6 +78,46 @@ def get_amenity(amenity_id):
         else:
             return jsonify(temp)
 
+@app_views.route('/amenities/<amenity_id>/places', strict_slashes=False)
+def get_place_of_amenity(amenity_id):
+    """
+    returns all places in which the particular ID number has been stored.
+    curl localhost:5001/api/v1/amenities/<amenity_id>/places
+
+    """
+    if STORAGE_TYPE == "db":
+        amenity = storage.get('Kitambulisho', amenity_id)
+        if not amenity:
+            abort(404)
+        places = [place.to_dict() for place in amenity.collection_stations]
+    else:
+        amenity = storage.get(Kitambulisho, amenity_id)
+        if not amenity:
+            abort(404)
+        places = [storage.get(Kitambulisho, amenity_id).to_dict()
+                     for place_id in amenity.amenity_ids]
+    return jsonify(places)
+
+@app_views.route('/amenities/<amenity_id>/signoffs', strict_slashes=False)
+def get_signoff_of_amenity(amenity_id):
+    """
+    returns all signoff forms in which the particular Amenity id  has been stored.
+    curl localhost:5001/api/v1/amenities/<amenity_id>/signoffs
+
+    """
+    if STORAGE_TYPE == "db":
+        amenity = storage.get('Kitambulisho', amenity_id)
+        if not amenity:
+            abort(404)
+        places = [place.to_dict() for place in amenity.collection_registers]
+    else:
+        amenity = storage.get(Kitambulisho, amenity_id)
+        if not amenity:
+            abort(404)
+        places = [storage.get(Kitambulisho, amenity_id).to_dict()
+                     for place_id in amenity.amenity_ids]
+    return jsonify(places)
+
 
 @app_views.route('/amenities/<amenity_id>',
                  strict_slashes=False,

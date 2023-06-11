@@ -26,6 +26,10 @@ class Kitambulisho(BaseModel, Base):
         # kitambulisho_Collection_SignOff = relationship("Kitambulisho_Collection_Station_SignOff", backref="kitambulisho")
         # recovered_on = Column(DateTime, nullable=True)
         cleared_on = Column(DateTime, nullable=True)
+        # Enables for reverse lookup of kitambulisho to the holding/reporting station.
+        collection_stations = relationship('Kitambulisho_Collection_Station', secondary="Kitambulisho_Collection_Register", viewonly=False)
+        # Enables for reverse lookup of kitambulisho to the Signoff/collected register.
+        collection_registers = relationship('Kitambulisho_Collection_Station_SignOff', secondary="Kitambulisho_Collection_Register", viewonly=False)
 
         name = Column(String(128), nullable=False)
         surname = Column(String(128), nullable=True)
@@ -33,6 +37,9 @@ class Kitambulisho(BaseModel, Base):
         ID_found_at_longitude = Column(String(128), nullable=True)
         ID_found_at_latitude = Column(String(128), nullable=True)
         Birth_District = Column(String(128), nullable=True)
+        Birth_Division= Column(String(128), nullable=True)
+        Birth_Location = Column(String(128), nullable=True)
+        Birth_Sub_Location = Column(String(128), nullable=True)
         Image_url = Column(String(255), nullable=True)
         Signature_url = Column(String(255), nullable=True)
 

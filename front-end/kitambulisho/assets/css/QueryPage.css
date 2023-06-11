@@ -487,6 +487,7 @@
     overflow: hidden;
   }
   .query-page-inner {
+
     top: 271px;
     left: 84px;
     font-size: var(--title-12px-regular-size);
