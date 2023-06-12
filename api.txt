@@ -4,6 +4,9 @@ curl -X POST http://0.0.0.0:5001/api/v1/amenities/ -H "Content-Type: application
 curl -X PUT http://0.0.0.0:5001/api/v1/amenities/7a7554c2-2c5a-45e8-9c05-6662cfc7049a -H "Content-Type: application/json" -d '{"name": "Libiancas", "ID_Number": "9865552"}' - update kitambulisho Details
 curl localhost:5001/api/v1/places/2ec62c4b-f8ea-4a52-b68d-9b06eb7fb927/signoffs  - list all Reissued ids by station
 
+# attaches a kitambulisho/amenity to a station based on amenity_id
+curl -X POST http://0.0.0.0:5001/api/v1/places/<place_id>/amenities/<amenity_id>
+
 # Look up a station where kitambulisho is stored based on kitambulisho pk id
 curl localhost:5001/api/v1/amenities/<amenity_id>/places
 # With the above filter to only show the vitambulisho that are yet to be collected
