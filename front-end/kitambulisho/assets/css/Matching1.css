@@ -440,6 +440,7 @@
   }
   .verify-contact-information-parent,
   .verify-identity-via-a-selfie-parent,
+  .finalize-parent,
   .verify-your-signature-parent {
     position: absolute;
     left: 813px;
@@ -454,7 +455,7 @@
     font-size: 17.81px;
     color: var(--color-2);
   }
-  .verify-contact-information-parent {
+  .verify-contact-information-parent,.finalize-parent {
     top: 351px;
     cursor: pointer;
   }

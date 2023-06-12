@@ -31,5 +31,6 @@ sudo mysql -u root
 bash -x web_dynamic_api.sh
 ```
 
-Api Endpoints are documented in the "api.txt" file provided.
+Api Endpoints are documented in the [api.txt file provided](https://github.com/PhylisMercy/Kitambulisho/blob/main/api.txt).
  
+# Project Resources

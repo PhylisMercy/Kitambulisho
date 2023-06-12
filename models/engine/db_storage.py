@@ -228,3 +228,6 @@ class DBStorage:
         else:
 
             return None
+
+    def ret_session(self):
+        return self.__session

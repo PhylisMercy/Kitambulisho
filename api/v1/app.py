@@ -151,6 +151,15 @@ def not_found(error):
     """
     return make_response(jsonify({'error': 'Not found'}), 404)
 
+@app.errorhandler(400)
+def record_exists(error):
+    """
+    overrides the default 404 not found error
+    :param error:
+    :return:
+    """
+    return make_response(jsonify({'error': 'Record Exists'}), 400)
+
 
 if __name__ == '__main__':
     if SERVE_HOST and SERVE_PORT:

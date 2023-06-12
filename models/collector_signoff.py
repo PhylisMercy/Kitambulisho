@@ -34,9 +34,9 @@ class Kitambulisho_Collection_Station_SignOff(BaseModel, Base):
         # kitambulisho_id = Column(String(60), ForeignKey('vitambulisho.id'), nullable=False)
         # # Delete all enumerations when the station is deleted.
         # kitambulisho = relationship("Kitambulisho", backref="kitambulisho_Collection_Station_SignOffs")
-        payment_Transaction_code = Column(String(60), nullable=False)
-        Pay_amount = Column(Numeric(10, 2), nullable=False)
-        Tax_Charge = Column(Numeric(10, 2), nullable=False)
+        payment_Transaction_code = Column(String(60), nullable=True)
+        Pay_amount = Column(Numeric(10, 2), nullable=True)
+        Tax_Charge = Column(Numeric(10, 2), nullable=True)
         Tax_Filed = Column(Enum(TaxFiledStatus), default=TaxFiledStatus.pending)
 
     else:

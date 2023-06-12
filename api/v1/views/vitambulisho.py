@@ -63,20 +63,13 @@ def get_amenity(amenity_id):
 
     if True:
         if STORAGE_TYPE == "db":
-            amenities = storage.all("Kitambulisho").values()
+            # amenities = storage.all("Kitambulisho").values()
+            amenities = storage.get("Kitambulisho",amenity_id)
+            if not amenities:
+                abort(404)
         else:
-            amenities = storage.all(Kitambulisho).values()
-
-            # print(cities)
-
-        for val in amenities:
-            if val.id == amenity_id:
-                temp.append(val.to_dict())
-                break
-        if len(temp) < 1:
-            abort(404)
-        else:
-            return jsonify(temp)
+            amenities = storage.get(Kitambulisho, amenity_id)
+        return jsonify(amenities.to_dict())
 
 @app_views.route('/amenities/<amenity_id>/places', strict_slashes=False)
 def get_place_of_amenity(amenity_id):

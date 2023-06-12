@@ -14,7 +14,7 @@ if STORAGE_TYPE == "db":
     class Kitambulisho_Collection_Register(BaseModel, Base):
         """ Kitambulisho_Collection_StationAmenity Class """
         __tablename__ = 'Kitambulisho_Collection_Register'
-        metadata = Base.metadata
+        # metadata = Base.metadata
         collection_station_id = Column(String(60),
                           ForeignKey('Kitambulisho_Collection_Stations.id'),
                           nullable=False,
@@ -27,7 +27,9 @@ if STORAGE_TYPE == "db":
         kitambulisho_id = Column(String(60),
                             ForeignKey('vitambulisho.id'),
                             nullable=False,
-                            primary_key=True)
+                            primary_key=True, unique=True) # Unique is made true so as to prevent duplicate entries
+        # todo: Create a transfer function that enables for tranfer of ID to other station
+
         # backref to vitambulisho
         kitambulisho_turned_in_station = relationship('Kitambulisho', backref='registered_station_Nid')
 

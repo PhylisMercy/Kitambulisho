@@ -14,11 +14,14 @@ You can also override its url_prefix like so
 app.register_blueprint(app_views, url_prefix="/diff/url")
 """
 import os
+import uuid
 
 from flask import jsonify, escape, abort, request, make_response
+from sqlalchemy.orm import session
 
 from api.v1.views import app_views
-from models import storage, City, User, Review, Kitambulisho_Collection_Station, Kitambulisho
+from models import storage, City, User, Review, Kitambulisho_Collection_Station, Kitambulisho, \
+    Kitambulisho_Collection_Register
 
 STORAGE_TYPE = os.environ.get('HBNB_TYPE_STORAGE')
 
@@ -113,12 +116,27 @@ def post_place_amenity(place_id, amenity_id):
 
         amenity = storage.get('Kitambulisho', amenity_id)
 
+        # amenity['id'] = uuid.uuid4()
+
         if not amenity:
             abort(404)
         if amenity in place.amenities:
-            return make_response(jsonify(amenity.to_dict()), 200)
+            abort(400)
+            # return make_response(jsonify(amenity.to_dict()), 200)
         else:
-            place.amenities.append(amenity)
+            req_json = dict()
+            req_json["collection_station_id"] = place_id
+            storage_session = storage.ret_session()
+            registry_entry_exist = storage_session.query(Kitambulisho_Collection_Register).filter_by(kitambulisho_id=amenity_id).first()
+            if not registry_entry_exist:
+                req_json["kitambulisho_id"] = amenity_id
+                new_object = Kitambulisho_Collection_Register(**req_json)
+                new_object.save()
+            else:
+                abort(400)
+            # new_object = Kitambulisho_Collection_Register()
+            # place.id_collector_signoffs.append(new_object)
+            # place.amenities.append(amenity)
     else:
         # Handles File Storage
         # storage.get return an object dictionary else None
@@ -135,6 +153,7 @@ def post_place_amenity(place_id, amenity_id):
         else:
             place.amenity_ids.append(amenity_id)
 
-    storage.save()
-    return make_response(jsonify(amenity.to_dict()), 201)
+    # storage.save()
+    # return make_response(jsonify(amenity.to_dict()), 201)
+    return make_response(jsonify(new_object.to_dict()), 201)
     # return jsonify(new_object.to_dict()), 201
