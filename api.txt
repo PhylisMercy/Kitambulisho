@@ -9,10 +9,18 @@ curl -X POST http://0.0.0.0:5001/api/v1/places/<place_id>/amenities/<amenity_id>
 
 # Look up a station where kitambulisho is stored based on kitambulisho pk id
 curl localhost:5001/api/v1/amenities/<amenity_id>/places
-# With the above filter to only show the vitambulisho that are yet to be collected
+# todo: With the above filter to only show the vitambulisho that are yet to be collected
 
 # verify if a particular ID/kitambulisho has been collected and at which station was this done.
+# response [] - ID unclaimed
+# response [data] - ID had open tickets of claimant
 curl localhost:5001/api/v1/amenities/<amenity_id>/signoffs
+# todo: With the above filter to only show the vitambulisho that are yet to be collected
+
+# todo: signoff an id card.
+
+
+
 
 # Query for Amenities that have been recovered but have not been turned in at a Station
 
