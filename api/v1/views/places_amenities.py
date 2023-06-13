@@ -51,6 +51,47 @@ def get_place_amenities(place_id):
                          for amenity_id in place.amenity_ids]
         return jsonify(amenities)
 
+@app_views.route('/places/<place_id>/amenities/<amenity_id>', strict_slashes=False)
+def get_place_amenity(place_id, amenity_id):
+    """ Function returns list of cities by states and
+    displays/renders them in a html document.
+    when no get parameter is provided it will list all available
+    states.
+    When a state_id is provided it will list all cities within than state
+    When a non_existent state_id is provided (url/states/<invalid_state_id>
+    the page displays "Not found!"
+    """
+
+    if True:
+        if STORAGE_TYPE == "db":
+            place = storage.get('Kitambulisho_Collection_Station', place_id)
+            if not place:
+                abort(404)
+            amenity = storage.get('Kitambulisho', amenity_id)
+            if amenity in place.amenities:
+                amenities = amenity.to_dict()
+                # return jsonify(amenity.to_dict())
+            else:
+                abort(404)
+            # amenities = [amenity.to_dict() for amenity in place.amenities]
+            # if amenity_id:
+            #     print(amenities)
+
+        else:
+            place = storage.get(Kitambulisho_Collection_Station, place_id)
+            if not place:
+                abort(404)
+            amenity = storage.get(Kitambulisho, amenity_id)
+            if amenity in place.amenities:
+                amenities = amenity.to_dict()
+                # return jsonify(amenity.to_dict())
+            else:
+                abort(404)
+            # amenities = [storage.get(Kitambulisho, amenity_id).to_dict()
+            #              for amenity_id in place.amenity_ids]
+
+        return jsonify(amenities)
+
 
 @app_views.route('/places/<place_id>/amenities/<amenity_id>',
                  strict_slashes=False,

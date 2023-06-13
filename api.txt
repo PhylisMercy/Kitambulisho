@@ -1,7 +1,10 @@
 curl localhost:5001/api/v1/places/<kitambulisho_station_id>/reviews  - Query for all station reviews
 
 # step 1: add lost ID/kitambulisho to Lost Documents Register
-    curl -X POST http://0.0.0.0:5001/api/v1/amenities/ -H "Content-Type: application/json" -d '{"name": "Libianca", "ID_Number": "9842552"}'
+    #minimal require :
+            curl -X POST http://0.0.0.0:5001/api/v1/amenities/ -H "Content-Type: application/json" -d '{"name": "Libianca", "ID_Number": "9842552"}'
+    # Detailed Required data:
+            curl -X POST http://0.0.0.0:5001/api/v1/amenities/ -H "Content-Type: application/json" -d '{"name": "Victor","surname":"Wanyama", "ID_Number": "19912506","ID_found_at_latitude":44.5,"ID_found_at_longitude": 77.8}'
             # List all available vitambulisho in the global Lost Documents Register _ for Dev/Debug purposes only
                 curl -X GET http://0.0.0.0:5001/api/v1/amenities
             # For production only have support to query a particular kitambulisho/ID
@@ -9,6 +12,8 @@ curl localhost:5001/api/v1/places/<kitambulisho_station_id>/reviews  - Query for
 
             # Update Kitambulisho Record
                 curl -X PUT http://0.0.0.0:5001/api/v1/amenities/<amenity_id> -H "Content-Type: application/json" -d '{"name": "Libiancas","surname": "Blanco","ID_Number": "9865552"}'
+            # Delete Kitambulisho Record
+                curl -X DELETE http://0.0.0.0:5001/api/v1/amenities/<amenity_id>
 
 # step 2:  attach a lost but recovered kitambulisho/amenity to a station based on amenity_id
 # todo: Ensure that there is only one entry of each unique ID of kitambulisho in the Kitambulisho register.
@@ -16,7 +21,28 @@ curl localhost:5001/api/v1/places/<kitambulisho_station_id>/reviews  - Query for
 # to fix this # remove the unique constraint on the kitambulisho table under models.
 # create a table transfers that matches the [id,from_station,to_station,kitambulisho_id] and the collection_register
 # should have a foreign key that points to the above transfers table.
+    # --> Substep -- Locate mandated Huduma_centers/Kitambulisho_collection_stations near me
+    # a. Get all States/Counties
+        curl -X GET http://localhost:5001/api/v1/states
+        # b. Get all Cities in a State/County
+            curl -X GET http://localhost:50001/api/v1/states/<state_id>/cities
+            # c. Get all Places/huduma_stations in the current City
+                curl -X GET http://localhost:5001/api/v1/cities/<city_id>/places
+                # d. Remit the Kitambulisho Document at the Kitambulisho_collection_station/place
+                    curl -X POST http://0.0.0.0:5001/api/v1/places/<place_id>/amenities/<amenity_id>
+                    # e. Verify that the Document was Successfully Handed in at the Huduma_station/place
+                        curl -X GET http://0.0.0.0:5001/api/v1/places/<place_id>/amenities  # use in devmod as it lists all amenities in current station.
+                        curl -X GET http://0.0.0.0:5001/api/v1/places/<place_id>/amenities/<amenity_id>  # use in production
+                        # f. Handles Duplicates in that You cannot remit ID card twice to Same Station
+                            # 2. Cannot remit ID card to multiple stations/ within the same state and across states/counties
+
+
+
+    > Query for all available stations to capture place id
+    >   curl -X GET http://0.0.0.0:5001/api/v1/places
+
     curl -X POST http://0.0.0.0:5001/api/v1/places/<place_id>/amenities/<amenity_id>
+
             # returns on success:
             {
               "__class__": "Kitambulisho_Collection_Register",
@@ -41,9 +67,15 @@ curl localhost:5001/api/v1/places/<kitambulisho_station_id>/reviews  - Query for
 
 
 #step 3.1:  Look up a station where kitambulisho is stored based on kitambulisho pk id
-curl -X GET localhost:5001/api/v1/amenities/<amenity_id>/places
-# todo: With the above, filter to only show the vitambulisho that are yet to be collected/signed off
-        # on Result return:
+    # a. Check the Global Lost Documents Register for Your ID/Kitambulisho
+        curl -X GET http://localhost:5001/api/v1/amenities
+        # todo: modify endpoint to only display amenities/vitambulisho that are yet to be cleared
+        # todo: Add endpoints  -> curl -X GET http://localhost:5001/api/v1/amenities/cleared  -> shows stats on reissued ID's
+
+        # b. Retrieve kitambulisho row_id and reverse lookup to retrieve the huduma station where it was handed in at.
+            curl -X GET localhost:5001/api/v1/amenities/<amenity_id>/places
+            # todo: With the above, filter to only show the vitambulisho that are yet to be collected/signed off
+            # on Result return:
             curl localhost:5001/api/v1/amenities/85fa7283-7623-4ba9-9bb5-8b374700c3b3/places
             [
               {
@@ -66,6 +98,8 @@ curl -X GET localhost:5001/api/v1/amenities/<amenity_id>/places
         # verify if a particular ID/kitambulisho has been collected and at which station was this done.
         # response [] - ID unclaimed
         # response [data] - ID had open tickets of claimant
+# todo: Add a Request form/endpoint that enables for the ID to be transfered to other kitambulisho collection Station in event that it far from current residence
+# todo: The place staff should be logged in in order to perform the transfer.
 
 # step 3.2 Check all signoff at a Huduma Center - for Debugging/Dev-only
 curl -X GET localhost:5001/api/v1/places/2ec62c4b-f8ea-4a52-b68d-9b06eb7fb927/signoffs  - list all Reissued ids by station

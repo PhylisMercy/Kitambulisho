@@ -51,8 +51,8 @@ INSERT INTO `users` (`email`, `password`, `first_name`, `last_name`, `id`, `crea
 --
 
 INSERT INTO `Kitambulisho_Collection_Stations` (`operate_registration_date`, `next_license_renew_date`, `city_id`, `staff_user_id`, `name`, `description`, `latitude`, `longitude`, `id`, `created_at`, `updated_at`) VALUES
-(NULL, NULL, 'b46115e9-d16c-41a4-b5e3-4e59c55cf8ee', '62de0569-ceb5-476a-b797-5757a0c526aa', 'Kapsoya', NULL, NULL, NULL, '2ec62c4b-f8ea-4a52-b68d-9b06eb7fb927', '2023-06-03 16:06:29', '2023-06-03 16:06:29'),
-(NULL, NULL, 'b46115e9-d16c-41a4-b5e3-4e59c55cf8ee', '86e7edd9-9bc9-447b-a4f6-af17ded93978', 'Kenyaree', NULL, NULL, NULL, 'e38b7289-4805-47f6-9d57-9f39ba657292', '2023-06-03 16:06:29', '2023-06-03 16:06:29');
+(NULL, NULL, 'b46115e9-d16c-41a4-b5e3-4e59c55cf8ee', '62de0569-ceb5-476a-b797-5757a0c526aa', 'Kapsoya Kitambulisho Collection Station', NULL, NULL, NULL, '2ec62c4b-f8ea-4a52-b68d-9b06eb7fb927', '2023-06-03 16:06:29', '2023-06-03 16:06:29'),
+(NULL, NULL, 'b46115e9-d16c-41a4-b5e3-4e59c55cf8ee', '86e7edd9-9bc9-447b-a4f6-af17ded93978', 'Kenyaree Kitambulisho Collection Station', NULL, NULL, NULL, 'e38b7289-4805-47f6-9d57-9f39ba657292', '2023-06-03 16:06:29', '2023-06-03 16:06:29');
 
 --
 -- Dumping data for table `reviews`
