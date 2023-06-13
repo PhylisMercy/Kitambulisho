@@ -6,23 +6,6 @@ The system involves 3 entities
 2. The Noble Citizen who finds the ID Card 
 3. A Station that receives->records->posts the ID Details and Reissues it to claiming Owners
 
-####  project proposal 
-https://docs.google.com/presentation/d/1sXeUJZmOe58-eWsL6o1cccubWsswPXanPoPfSGmYCHM/edit?usp=sharing
-
-
-#### Proposed web architecture
-![ID Tracker flowChart (2)](https://github.com/PhylisMercy/Kitambulisho/assets/110587824/836a3b87-4729-49dc-9f94-74410f4544a7)
-
-
-####  Trello board
-https://trello.com/invite/b/1JZMmeeG/ATTI106daadbfdef4a64b569c3a5f0c025acEEF56A70/portfolio-project
-
-
-#### Presentation slides
-
-https://docs.google.com/presentation/d/14CUWgDwO1ZzQcc9Qc8KbwXA9XePaWrZuexTRA3RP4p8/edit?usp=sharing
-
-
 # Getting Started
 ENV: python3
 Technologies: Flask, SQLAlchemy(ORM), Rest_API
@@ -56,3 +39,21 @@ HBNB_ENV=dev to test out DQL and DRL.
 Api Endpoints are documented in the [api.txt file provided](https://github.com/PhylisMercy/Kitambulisho/blob/main/api.txt).
  
 # Project Resources
+
+####  project proposal 
+[Kitambulisho Trace & Reissue System Pitch Deck & Lean Canvas Model](https://docs.google.com/presentation/d/1sXeUJZmOe58-eWsL6o1cccubWsswPXanPoPfSGmYCHM/edit?usp=sharing)
+
+
+#### Proposed web architecture & MVP
+![ID Tracker flowChart (2)](https://github.com/PhylisMercy/Kitambulisho/assets/110587824/836a3b87-4729-49dc-9f94-74410f4544a7)
+
+[Minimal Viable Product Specification Document](https://docs.google.com/document/d/1sEPgdIT1LoF1bAv-tHo5r54NwnhApaAszcrVONloFLM/edit?usp=sharing)
+#### Project Management
+[Trello board Detailing the Work BreakDown Structure & Timelines](https://trello.com/invite/b/1JZMmeeG/ATTI106daadbfdef4a64b569c3a5f0c025acEEF56A70/portfolio-project)
+
+
+
+#### Final Presentation slides
+
+[project Summary Slides](https://docs.google.com/presentation/d/14CUWgDwO1ZzQcc9Qc8KbwXA9XePaWrZuexTRA3RP4p8/edit?usp=sharing)
+
