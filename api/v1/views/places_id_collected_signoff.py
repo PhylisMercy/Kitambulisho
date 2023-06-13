@@ -59,6 +59,7 @@ def get_place_signoffs(place_id):
         return jsonify(amenities)
         # return {"hello":"world"}
 
+### todo: Resolve some endpoint ambiguity.
 
 @app_views.route('/places/<place_id>/signoff/<signoff_id>',
                  strict_slashes=False,

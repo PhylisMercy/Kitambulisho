@@ -19,7 +19,7 @@ from flask import jsonify, escape, abort, request, make_response
 
 from api.v1.views import app_views
 from models import storage, \
-    City, County,Kitambulisho
+    City, County, Kitambulisho
 
 STORAGE_TYPE = os.environ.get('HBNB_TYPE_STORAGE')
 
@@ -59,17 +59,16 @@ def get_amenity(amenity_id):
     When a non_existent state_id is provided (url/states/<invalid_state_id>
     the page displays "Not found!"
     """
-    temp = list()
 
-    if True:
-        if STORAGE_TYPE == "db":
-            # amenities = storage.all("Kitambulisho").values()
-            amenities = storage.get("Kitambulisho",amenity_id)
-            if not amenities:
-                abort(404)
-        else:
-            amenities = storage.get(Kitambulisho, amenity_id)
-        return jsonify(amenities.to_dict())
+    if STORAGE_TYPE == "db":
+        # amenities = storage.all("Kitambulisho").values()
+        amenities = storage.get("Kitambulisho", amenity_id)
+        if not amenities:
+            abort(404)
+    else:
+        amenities = storage.get(Kitambulisho, amenity_id)
+    return jsonify(amenities.to_dict())
+
 
 @app_views.route('/amenities/<amenity_id>/places', strict_slashes=False)
 def get_place_of_amenity(amenity_id):
@@ -88,8 +87,9 @@ def get_place_of_amenity(amenity_id):
         if not amenity:
             abort(404)
         places = [storage.get(Kitambulisho, amenity_id).to_dict()
-                     for place_id in amenity.amenity_ids]
+                  for place_id in amenity.amenity_ids]
     return jsonify(places)
+
 
 @app_views.route('/amenities/<amenity_id>/signoffs', strict_slashes=False)
 def get_signoff_of_amenity(amenity_id):
@@ -108,7 +108,7 @@ def get_signoff_of_amenity(amenity_id):
         if not amenity:
             abort(404)
         places = [storage.get(Kitambulisho, amenity_id).to_dict()
-                     for place_id in amenity.amenity_ids]
+                  for place_id in amenity.amenity_ids]
     return jsonify(places)
 
 

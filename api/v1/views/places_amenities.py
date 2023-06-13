@@ -162,7 +162,7 @@ def post_place_amenity(place_id, amenity_id):
         if not amenity:
             abort(404)
         if amenity in place.amenities:
-            abort(400)
+            abort(400,"Record Exists")
             # return make_response(jsonify(amenity.to_dict()), 200)
         else:
             req_json = dict()
@@ -174,7 +174,7 @@ def post_place_amenity(place_id, amenity_id):
                 new_object = Kitambulisho_Collection_Register(**req_json)
                 new_object.save()
             else:
-                abort(400)
+                abort(400,"Record Exists")
             # new_object = Kitambulisho_Collection_Register()
             # place.id_collector_signoffs.append(new_object)
             # place.amenities.append(amenity)

@@ -5,6 +5,8 @@ curl localhost:5001/api/v1/places/<kitambulisho_station_id>/reviews  - Query for
             curl -X POST http://0.0.0.0:5001/api/v1/amenities/ -H "Content-Type: application/json" -d '{"name": "Libianca", "ID_Number": "9842552"}'
     # Detailed Required data:
             curl -X POST http://0.0.0.0:5001/api/v1/amenities/ -H "Content-Type: application/json" -d '{"name": "Victor","surname":"Wanyama", "ID_Number": "19912506","ID_found_at_latitude":44.5,"ID_found_at_longitude": 77.8}'
+            # todo: textract should capture the Document's serial Number and make it unique to prevent duplicate entries with same ID card reported by 2 recoverers.
+
             # List all available vitambulisho in the global Lost Documents Register _ for Dev/Debug purposes only
                 curl -X GET http://0.0.0.0:5001/api/v1/amenities
             # For production only have support to query a particular kitambulisho/ID
@@ -75,6 +77,7 @@ curl localhost:5001/api/v1/places/<kitambulisho_station_id>/reviews  - Query for
         # b. Retrieve kitambulisho row_id and reverse lookup to retrieve the huduma station where it was handed in at.
             curl -X GET localhost:5001/api/v1/amenities/<amenity_id>/places
             # todo: With the above, filter to only show the vitambulisho that are yet to be collected/signed off
+            # todo: Add feature that enables reverse lookup [ place->city->state]
             # on Result return:
             curl localhost:5001/api/v1/amenities/85fa7283-7623-4ba9-9bb5-8b374700c3b3/places
             [
@@ -105,6 +108,43 @@ curl localhost:5001/api/v1/places/<kitambulisho_station_id>/reviews  - Query for
 curl -X GET localhost:5001/api/v1/places/2ec62c4b-f8ea-4a52-b68d-9b06eb7fb927/signoffs  - list all Reissued ids by station
 
 # step 4 - Sign off a Kitambulisho to officially state that the claimant has been reissued with their Document.
+curl -X POST http://0.0.0.0:5001/api/v1/signoffs -H "Content-Type: application/json" -d '{"ID_Collector_Register_id": "Vict"}'
+{
+  "error": "Not found"
+}
+curl -X POST http://0.0.0.0:5001/api/v1/signoffs -H "Content-Type: application/json" -d '{"ID_Collector_Register_id": "1c6e9030-8e32-4334-8324-0dc5b516323a"}'
+{
+  "ID_Collector_Register_id": "1c6e9030-8e32-4334-8324-0dc5b516323a",
+  "Pay_amount": "null",
+  "Tax_Charge": "null",
+  "Tax_Filed": "2",
+  "__class__": "Kitambulisho_Collection_Station_SignOff",
+  "created_at": "2023-06-13T17:30:44.423955",
+  "id": "ca1fe07b-6b08-403e-bada-7624f1b90bdb",
+  "payment_Transaction_code": null,
+  "status": "3",
+  "updated_at": "2023-06-13T17:30:44.424337"
+}
+
+#  update of Status allowed Values
+closed = 0
+verification = 1
+anomaly = 2
+pending = 3
+
+curl -X PUT http://0.0.0.0:5001/api/v1/signoffs/ca1fe07b-6b08-403e-bada-7624f1b90bdb -H "Content-Type: application/json" -d '{"status": "closed"}'
+curl localhost:5001/api/v1/signoffs
+# DELETE SIGNOFF ENTRY
+curl -X DELETE localhost:5001/api/v1/signoffs/<signoff_id>
+
+
+
+
+
+
+
+
+
 curl -X POST http://0.0.0.0:5001/api/v1/places/<place_id>/amenities/<amenity_id>/signoff
 curl localhost:5001/api/v1/amenities/<amenity_id>/signoffs
 # todo: With the above filter to only show the vitambulisho that are yet to be collected
@@ -135,6 +175,7 @@ TODO: reverse check signoff to a station.
 
 TODO: reverse check kitambulisho to a station/stations based on signed off/ pending sign off
 
+# todo: Future: Add support for pagination [ handling of millions of records that involves retrieving data as pages with "base & bounds registers" (: L^]]
 
 
 
