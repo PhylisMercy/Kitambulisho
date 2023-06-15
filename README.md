@@ -36,6 +36,14 @@ NOTE: When you are making database schema modification set web_dynamic_api.sh HB
 will cause the database to be truncated and DDL to be rerun to incorporate new updates Else just set it's value to
 HBNB_ENV=dev to test out DQL and DRL.
 
+# API Enpoint Documentation.
+``` #install asciinema to play the *.rec files
+sudo apt install asciinema -y
+# play Recording using the following: -s is for speed you can set to a lower value e.g 1 if you prefer.
+ls {1..6}*.rec # Lists all asciinema recordings
+asciinema play -s 5 1_report_lost_id.rec # Plays the first asciinema recording
+
+```
 Api Endpoints are documented in the [api.txt file provided](https://github.com/PhylisMercy/Kitambulisho/blob/main/api.txt).
  
 # Project Resources

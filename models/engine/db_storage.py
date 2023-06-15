@@ -210,7 +210,7 @@ class DBStorage:
         :param obj: updates
         :return:
         """
-        default_list_ignore = ["__class__", "created_at", "id", "updated_at"]
+        default_list_ignore = ["__class__", "created_at", "id", "updated_at" ]
         default_list_ignore += ignore_fields
         if obj:
             # update row to database
@@ -221,6 +221,9 @@ class DBStorage:
                 for key, value in req_json.items():
                     if key not in default_list_ignore:
                         setattr(row, key, value)
+                setattr(row,"updated_at",datetime.datetime.utcnow())
+                # self.updated_at = datetime.strptime( ["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
+                # self.updated_at =
                 self.save()
                 return row
             else:

@@ -68,7 +68,7 @@ curl localhost:5001/api/v1/places/<kitambulisho_station_id>/reviews  - Query for
 
 
 
-#step 3.1:  Look up a station where kitambulisho is stored based on kitambulisho pk id
+#step 3.1: Claimant  Looks up a station where kitambulisho is stored based on kitambulisho pk id
     # a. Check the Global Lost Documents Register for Your ID/Kitambulisho
         curl -X GET http://localhost:5001/api/v1/amenities
         # todo: modify endpoint to only display amenities/vitambulisho that are yet to be cleared
@@ -89,14 +89,44 @@ curl localhost:5001/api/v1/places/<kitambulisho_station_id>/reviews  - Query for
                 "id": "e38b7289-4805-47f6-9d57-9f39ba657292",
                 "latitude": null,
                 "longitude": null,
-                "name": "Kenyaree",
+                "name": "Kenyaree Kitambulisho Collection Station",
                 "next_license_renew_date": null,
                 "operate_registration_date": null,
                 "staff_user_id": "86e7edd9-9bc9-447b-a4f6-af17ded93978",
                 "updated_at": "2023-06-03T16:06:29"
               }
             ]
+            # The Claimants Kitambulisho Was turned in @ Kenyaree Kitambulisho Collection Station. The
+            # Claimant Can Request for A transfer to their Closest Station e.g Kapsoya By Filling in a Form
+            # that will be used To approve the Transfer.
 
+            #.b) Request Transfer to Closest Station from Kenyaree to Kapsoya Station For Ease of Collection Less the need to Travel
+                curl -X POST http://0.0.0.0:5001/api/v1/claims_register/<claims_register_id> -H "Content-Type: application/json" -d '{"collection_station_id": "<transfer_station>"}'
+                # Current Station ID:e38b7289-4805-47f6-9d57-9f39ba657292
+                # kapsoya Station ID: 2ec62c4b-f8ea-4a52-b68d-9b06eb7fb927
+                # Claims_register_id : 7911a666-eef9-445e-ae27-aca60340c9f7
+                # Grab all Claims Register Entries
+                curl -X GET http://localhost:5001/api/v1/claims_register
+                # Grab Specific Claims Register Entry
+                curl -X GET http://localhost:5001/api/v1/claims_register/<claims_register_id>
+                curl -X GET http://localhost:5001/api/v1/claims_register/7911a666-eef9-445e-ae27-aca60340c9f7
+                # Return Results
+                {
+                  "__class__": "Kitambulisho_Collection_Register",
+                  "collection_station_id": "e38b7289-4805-47f6-9d57-9f39ba657292",
+                  "created_at": "2023-06-13T12:39:15",
+                  "id": "7911a666-eef9-445e-ae27-aca60340c9f7",
+                  "kitambulisho_id": "85fa7283-7623-4ba9-9bb5-8b374700c3b3",
+                  "updated_at": "2023-06-13T12:39:15"
+                }
+                # Claimants Kitambulisho Record ID [Bantam]: 85fa7283-7623-4ba9-9bb5-8b374700c3b3
+                # Perform the Transfer to Kapsoya Kitambulisho Collection Station
+                curl -X PUT http://0.0.0.0:5001/api/v1/claims_register/<claims_register_id> -H "Content-Type: application/json" -d '{"collection_station_id": "<transfer_station>"}'
+                curl -X PUT http://0.0.0.0:5001/api/v1/claims_register/7911a666-eef9-445e-ae27-aca60340c9f7 -H "Content-Type: application/json" -d '{"collection_station_id": "2ec62c4b-f8ea-4a52-b68d-9b06eb7fb927"}'
+
+                # Verify that Kitambulisho was indeed Transferred from Kenyaree to Kapsoya Kitambulisho Station
+                curl localhost:5001/api/v1/amenities/85fa7283-7623-4ba9-9bb5-8b374700c3b3/places
+                curl -X GET http://localhost:5001/api/v1/claims_register/7911a666-eef9-445e-ae27-aca60340c9f7
 
         # verify if a particular ID/kitambulisho has been collected and at which station was this done.
         # response [] - ID unclaimed
@@ -104,10 +134,47 @@ curl localhost:5001/api/v1/places/<kitambulisho_station_id>/reviews  - Query for
 # todo: Add a Request form/endpoint that enables for the ID to be transfered to other kitambulisho collection Station in event that it far from current residence
 # todo: The place staff should be logged in in order to perform the transfer.
 
-# step 3.2 Check all signoff at a Huduma Center - for Debugging/Dev-only
+
+# step 3.3 Claimant Presents themselves at Station and Staff Searches for Available Amenities/Vitambulisho being held at current station
+    curl localhost:5001/api/v1/places/<place_id>/amenities
+    # List all ID's/vitambulisho Turned in at kenyaree Kitambulisho Station.
+    curl localhost:5001/api/v1/places/e38b7289-4805-47f6-9d57-9f39ba657292/amenities
+    # After Identifying Claimants kitambulisho reference number the staff can use it to generate a signoff form.
+    curl localhost:5001/api/v1/places/e38b7289-4805-47f6-9d57-9f39ba657292/amenities/85fa7283-7623-4ba9-9bb5-8b374700c3b3
+        {
+          "Birth_District": null,
+          "Birth_Division": null,
+          "Birth_Location": null,
+          "Birth_Sub_Location": null,
+          "ID_Number": "4458989",
+          "ID_found_at_latitude": null,
+          "ID_found_at_longitude": null,
+          "Image_url": null,
+          "Signature_url": null,
+          "__class__": "Kitambulisho",
+          "cleared_on": null,
+          "created_at": "2023-06-12T22:52:11",
+          "id": "85fa7283-7623-4ba9-9bb5-8b374700c3b3",
+          "name": "Bantam",
+          "surname": null,
+          "updated_at": "2023-06-12T22:52:11"
+        }
+        # staff retrieves the registration Entry Number of the ID.
+        # Global Search the Register in All Stations for Registers .
+        curl -X GET localhost:5001/api/claims_register
+         # Grab specific claims register Entry.
+        curl -X GET localhost:5001/api/claims_register/<claims_register_id>
+
+
+        # List all the Claims Register of all Reported + handed in Vitambulisho at current Station
+        curl -X GET localhost:5001/api/v1/place/<place_id>/claims_register
+        curl -X GET localhost:5001/api/v1/place/<place_id>/claims_register/<amenity_id>
+
+# step 3.3 Check all signoffs at a Huduma Center - for Debugging/Dev-only
 curl -X GET localhost:5001/api/v1/places/2ec62c4b-f8ea-4a52-b68d-9b06eb7fb927/signoffs  - list all Reissued ids by station
 
-# step 4 - Sign off a Kitambulisho to officially state that the claimant has been reissued with their Document.
+
+# step 4 -Huduma Station Staff Signs off a Kitambulisho to officially state that the claimant has been reissued with their Document.
 curl -X POST http://0.0.0.0:5001/api/v1/signoffs -H "Content-Type: application/json" -d '{"ID_Collector_Register_id": "Vict"}'
 {
   "error": "Not found"
@@ -136,9 +203,6 @@ curl -X PUT http://0.0.0.0:5001/api/v1/signoffs/ca1fe07b-6b08-403e-bada-7624f1b9
 curl localhost:5001/api/v1/signoffs
 # DELETE SIGNOFF ENTRY
 curl -X DELETE localhost:5001/api/v1/signoffs/<signoff_id>
-
-
-
 
 
 

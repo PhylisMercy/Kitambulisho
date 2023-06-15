@@ -205,7 +205,7 @@ def update_place(place_id):
     if req_json is None:
         abort(400, 'Not a JSON')
     ignore_fields = ['city_id', 'user_id']
-    status = storage.update(Kitambulisho_Collection_Station, place_id, req_json)
+    status = storage.update(Kitambulisho_Collection_Station, place_id, req_json,ignore_fields)
 
     if status:
         return jsonify(status.to_dict())

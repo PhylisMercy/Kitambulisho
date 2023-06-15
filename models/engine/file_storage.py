@@ -211,6 +211,7 @@ class FileStorage:
                         setattr(self.__class__.__objects[pkey], key, value)
                     except BaseException:
                         return None
+            setattr(self.__class__.__objects[pkey], "updated_at", datetime.datetime.utcnow())
             self.save()
             self.reload()
             return self.__class__.__objects[pkey]

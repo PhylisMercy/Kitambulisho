@@ -12,3 +12,4 @@ from api.v1.views.places_reviews import *
 from api.v1.views.places_amenities import *
 from api.v1.views.places_id_collected_signoff import *
 from api.v1.views.id_collected_signoffs import *
+from api.v1.views.Claims_Register import *

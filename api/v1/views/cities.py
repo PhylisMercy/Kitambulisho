@@ -138,6 +138,8 @@ def del_city(city_id):
                 abort(404)
         else:
             abort(404)
+    else:
+        abort(404)
 
 
 @app_views.route('/states/<state_id>/cities',
