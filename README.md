@@ -66,13 +66,11 @@ Api Endpoints are documented in the [api.txt file provided](https://github.com/P
 
 
 
-https://github.com/PhylisMercy/Kitambulisho/blob/main/Videos/01_Getting_Started.mp4
-https://github.com/PhylisMercy/Kitambulisho/blob/main/Videos/02_Report_Lost_n_Found.mov
-https://github.com/PhylisMercy/Kitambulisho/Videos/03_Remit_Kitambulisho_to_huduma_station.mov
-![ID Tracker flowChart (2)](https://github.com/PhylisMercy/Kitambulisho/Videos/04_Kitambulisho_Remit_Handling_Duplicate_remittance.mov)
-![ID Tracker flowChart (2)](https://github.com/PhylisMercy/Kitambulisho/Videos/05_Search_Lost_ID_Get_Huduma_Station.mov)
-[Project Demo Videos](https://drive.google.com/drive/folders/13cwyBdtJo-ZwpxggVc7oXQ9anfpiFxZl?usp=sharing)
-
+![Getting Started](./Videos/01_Getting_Started.mp4)
+![Reporting a Lost n Found Document](./Videos/02_Report_Lost_n_Found.mov)
+![Remit of Lost Document to Kitambulisho Collection Station](./Videos/03_Remit_Kitambulisho_to_huduma_station.mov)
+![System Handle of Duplicate Remit of Documents at Different Stations](./Videos/04_Kitambulisho_Remit_Handling_Duplicate_remittance.mov)
+![Search For Lost ID and Tracing to Where it is Currently Being Kept"claimant"](./Videos/05_Search_Lost_ID_Get_Huduma_Station.mov)
 #### Final Presentation slides
 
 [project Summary Slides](https://docs.google.com/presentation/d/14CUWgDwO1ZzQcc9Qc8KbwXA9XePaWrZuexTRA3RP4p8/edit?usp=sharing)
