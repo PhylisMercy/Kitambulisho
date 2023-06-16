@@ -55,13 +55,19 @@ Api Endpoints are documented in the [api.txt file provided](https://github.com/P
 #### Proposed web architecture & MVP
 ![ID Tracker flowChart (2)](https://github.com/PhylisMercy/Kitambulisho/assets/110587824/836a3b87-4729-49dc-9f94-74410f4544a7)
 
+
+
 [Minimal Viable Product Specification Document](https://docs.google.com/document/d/1sEPgdIT1LoF1bAv-tHo5r54NwnhApaAszcrVONloFLM/edit?usp=sharing)
 #### Project Management
 [Trello board Detailing the Work BreakDown Structure & Timelines](https://trello.com/invite/b/1JZMmeeG/ATTI106daadbfdef4a64b569c3a5f0c025acEEF56A70/portfolio-project)
 
 
 #### Demo Videos
-
+![ID Tracker flowChart (2)](./Videos/01_Getting_Started.mp4)
+![ID Tracker flowChart (2)](./Videos/02_Report_Lost_n_Found.mov)
+![ID Tracker flowChart (2)](./Videos/03_Remit_Kitambulisho_to_huduma_station.mov)
+![ID Tracker flowChart (2)](./Videos/04_Kitambulisho_Remit_Handling_Duplicate_remittance.mov)
+![ID Tracker flowChart (2)](./Videos/05_Search_Lost_ID_Get_Huduma_Station.mov)
 [Project Demo Videos](https://drive.google.com/drive/folders/13cwyBdtJo-ZwpxggVc7oXQ9anfpiFxZl?usp=sharing)
 
 #### Final Presentation slides
