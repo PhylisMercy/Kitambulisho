@@ -63,11 +63,14 @@ Api Endpoints are documented in the [api.txt file provided](https://github.com/P
 
 
 #### Demo Videos
-![ID Tracker flowChart (2)](./Videos/01_Getting_Started.mp4)
-![ID Tracker flowChart (2)](./Videos/02_Report_Lost_n_Found.mov)
-![ID Tracker flowChart (2)](./Videos/03_Remit_Kitambulisho_to_huduma_station.mov)
-![ID Tracker flowChart (2)](./Videos/04_Kitambulisho_Remit_Handling_Duplicate_remittance.mov)
-![ID Tracker flowChart (2)](./Videos/05_Search_Lost_ID_Get_Huduma_Station.mov)
+Earth Heightmap node:
+
+
+![ID Tracker flowChart (2)](https://github.com/PhylisMercy/Kitambulisho/Videos/01_Getting_Started.mp4)
+![ID Tracker flowChart (2)](https://github.com/PhylisMercy/Kitambulisho/Videos/02_Report_Lost_n_Found.mov)
+![ID Tracker flowChart (2)](https://github.com/PhylisMercy/Kitambulisho/Videos/03_Remit_Kitambulisho_to_huduma_station.mov)
+![ID Tracker flowChart (2)](https://github.com/PhylisMercy/Kitambulisho/Videos/04_Kitambulisho_Remit_Handling_Duplicate_remittance.mov)
+![ID Tracker flowChart (2)](https://github.com/PhylisMercy/Kitambulisho/Videos/05_Search_Lost_ID_Get_Huduma_Station.mov)
 [Project Demo Videos](https://drive.google.com/drive/folders/13cwyBdtJo-ZwpxggVc7oXQ9anfpiFxZl?usp=sharing)
 
 #### Final Presentation slides
