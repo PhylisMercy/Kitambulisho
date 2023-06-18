@@ -67,9 +67,13 @@ Api Endpoints are documented in the [api.txt file provided](https://github.com/P
 
 
 ![Getting Started](./Videos/01_Getting_Started.mp4)
+
 ![Reporting a Lost n Found Document](./Videos/02_Report_Lost_n_Found.mov)
+
 ![Remit of Lost Document to Kitambulisho Collection Station](./Videos/03_Remit_Kitambulisho_to_huduma_station.mov)
+
 ![System Handle of Duplicate Remit of Documents at Different Stations](./Videos/04_Kitambulisho_Remit_Handling_Duplicate_remittance.mov)
+
 ![Search For Lost ID and Tracing to Where it is Currently Being Kept"claimant"](./Videos/05_Search_Lost_ID_Get_Huduma_Station.mov)
 #### Final Presentation slides
 
